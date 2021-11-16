@@ -10,3 +10,5 @@ conn = mysql.connector.connect(
 
 cur = conn.cursor()
 cur.execute("CREATE DATABASE QuadMonitor")
+cur.execute('''CREATE TABLE Product
+                (maker CHAR(2), model CHAR(5), type VARCHAR(8), PRIMARY KEY (maker, model) )''')
