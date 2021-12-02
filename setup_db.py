@@ -13,6 +13,8 @@ conn = mysql.connector.connect(
 cur = conn.cursor()
 cur.execute("DROP DATABASE IF EXISTS QuadMonitor")
 cur.execute("CREATE DATABASE QuadMonitor")
+cur.execute("USE QuadMonitor")
+
 cur.execute("DROP TABLE IF EXISTS readings")
 cur.execute('''CREATE TABLE devices(
                 DeviceID CHAR(3),
