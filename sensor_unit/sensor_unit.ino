@@ -8,6 +8,7 @@ int moistOnePin = A0;
 int moistOneValue = 0;
 int wifiReset = 8;
 
+//reset wifi
 
 //read wifi message
 String readWifi(){
@@ -20,9 +21,10 @@ String readWifi(){
   while ((millis()-timeStart) < wait);
   while (wifi.available()){
     newChar = wifi.read();
-    if ((newChar != 13) && (newChar !=10)){
+    if (newChar > 13){
       result += newChar;
     }
+
     
     //Serial.println(wifi.read());
     //delay(20);
