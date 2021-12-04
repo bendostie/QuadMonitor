@@ -17,10 +17,9 @@ cur.execute("USE QuadMonitor")
 
 cur.execute("DROP TABLE IF EXISTS readings")
 cur.execute('''CREATE TABLE devices(
-                DeviceID CHAR(3),
-                NodeID CHAR,
-                DeviceType CHAR                
-                PRIMARY KEY (DeviceID))''')
+                DeviceID CHAR(3) PRIMARY KEY,
+                NodeID VARCHAR,
+                DeviceType VARCHAR)''')
 cur.execute('''CREATE TABLE readings(
                 DeviceID CHAR(3),
                 DataDate DATE,
@@ -30,7 +29,7 @@ cur.execute('''CREATE TABLE readings(
                 FOREIGN KEY (DeviceID) 
                 REFERENCES devices(DeviceID)
                 ON DELETE SET NULL
-                ON UPDATE CASCADE
+                ON UPDATE CASCADE,
                 PRIMARY KEY (DeviceID, DataDate, DataTime))''')
 cur.execute('''INSERT INTO devices(DeviceID, NodeID, DeviceType) 
             VALUES ('001', 'Arduino_1', 'soil_moisture')''')

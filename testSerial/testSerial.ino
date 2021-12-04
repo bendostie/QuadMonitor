@@ -3,7 +3,7 @@ SoftwareSerial myESP(3, 2);//RX, TX
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
   myESP.begin(115200);
   myESP.write("AT\r\n");
 }
