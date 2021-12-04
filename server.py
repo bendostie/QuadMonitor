@@ -1,7 +1,7 @@
 import socket
 import threading
 from datetime import datetime
-ip_address = "10.65.1.226"
+ip_address = "10.65.1.234"
 port = 81
 
 import mysql.connector
