@@ -28,7 +28,6 @@ cur.execute('''CREATE TABLE readings(
                 
                 FOREIGN KEY (DeviceID) 
                 REFERENCES devices(DeviceID)
-                ON DELETE SET NULL
                 ON UPDATE CASCADE,
                 PRIMARY KEY (DeviceID, DataDate, DataTime))''')
 cur.execute('''INSERT INTO devices(DeviceID, NodeID, DeviceType) 
