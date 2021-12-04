@@ -32,7 +32,7 @@ cur.execute('''CREATE TABLE readings(
                 ON UPDATE CASCADE,
                 PRIMARY KEY (DeviceID, DataDate, DataTime))''')
 cur.execute('''INSERT INTO devices(DeviceID, NodeID, DeviceType) 
-            VALUES ('001', 'Arduino_1', 'soil_moisture')''')
+            VALUES ('111', 'Arduino_1', 'soil_moisture')''')
 
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
