@@ -58,7 +58,7 @@ void checkConnection(){
 }
 void connectServer(){
   Serial.println("connecting to server");
-  wifi.write("AT+CIPSTART=\"TCP\",\"10.65.1.226\",81\r\n");
+  wifi.write("AT+CIPSTART=\"TCP\",\"10.65.1.234\",2001\r\n");
   delay(5000);
   Serial.println("after server connect: " + readWifi());
   
@@ -101,7 +101,8 @@ void loop() {
   Serial.print(data);
   Serial.println(readWifi());
   
-  
+  wifi.write("AT+CIPCLOSE\r\n");
+  Serial.println("after close: " + readWifi());
   sleep();
   
   //delay(1000);
