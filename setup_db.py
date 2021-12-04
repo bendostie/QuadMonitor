@@ -18,8 +18,8 @@ cur.execute("USE QuadMonitor")
 cur.execute("DROP TABLE IF EXISTS readings")
 cur.execute('''CREATE TABLE devices(
                 DeviceID CHAR(3) PRIMARY KEY,
-                NodeID VARCHAR,
-                DeviceType VARCHAR)''')
+                NodeID VARCHAR(25),
+                DeviceType VARCHAR(25))''')
 cur.execute('''CREATE TABLE readings(
                 DeviceID CHAR(3),
                 DataDate DATE,
