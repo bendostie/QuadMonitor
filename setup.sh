@@ -7,5 +7,6 @@ CREATE USER 'ServerUser'@localhost IDENTIFIED BY 'Turtle2';
 SELECT User FROM mysql.user;
 GRANT ALL PRIVILEGES ON *.* TO 'SetupUser'@localhost IDENTIFIED BY 'Turtle2';
 GRANT SELECT ON QuadMonitor.readings TO 'WebUser';
+GRANT SELECT ON QuadMonitor.devices TO 'WebUser';
 GRANT INSERT ON QuadMonitor.readings TO 'ServerUser'@localhost;
 FLUSH PRIVILEGES;
