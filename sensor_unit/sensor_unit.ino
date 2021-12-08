@@ -90,39 +90,46 @@ void loop() {
   connectServer();
   
   //read and send value
+  delay(5000);
   String Id_m = "111";
   String data_m = String(analogRead(moistOnePin));
   data_m = Id_m + data_m;
   String command_m = "AT+CIPSEND=" + String(data_m.length());
   command_m += "\r\n";
+  data_m = data_m + "\r\n";
+  wifi.print(command_m);
+  delay(1000);
+  Serial.print(command_m);
+  delay(1000);
+  wifi.print(data_m);
+  delay(1000);
+  Serial.print(data_m);
+  Serial.println("after CIP send: " + readWifi());
   
   //humidity
+  delay(5000);
   String Id_h = "112";
   String data_h = String(dht.readHumidity());
   data_h = Id_h + data_h;
   String command_h = "AT+CIPSEND=" + String(data_h.length());
   command_h += "\r\n";
-  //temp
-  String Id_t = "113";
-  String data_t = String(dht.readTemperature(true));
-  data_t = Id_t + data_t;
-  String command_t = "AT+CIPSEND=" + String(data_t.length());
-  command_t += "\r\n";
-  
-  delay(5000);
-  wifi.print(command_m);
-  Serial.print(command_m);
-  delay(1000);
-  wifi.print(data_m);
-  Serial.print(data_m);
-  
+  data_h = data_h + "\r\n";
   delay(1000);
   wifi.print(command_h);
   Serial.print(command_h);
   delay(1000);
   wifi.print(data_h);
   Serial.print(data_h);
+  Serial.println("after CIP send: " + readWifi());
   
+  //temp
+  delay(5000);
+  String Id_t = "113";
+  String data_t = String(dht.readTemperature());
+  data_t = Id_t + data_t;
+  String command_t = "AT+CIPSEND=" + String(data_t.length());
+  command_t += "\r\n";
+  data_t = data_t + "\r\n";
   delay(1000);
   wifi.print(command_t);
   Serial.print(command_t);
