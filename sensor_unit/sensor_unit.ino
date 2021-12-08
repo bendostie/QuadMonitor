@@ -1,10 +1,15 @@
 //software serial for ESP-01
 #include <SoftwareSerial.h>
+#include "DHT.h"
+
 //#include "LowPower.h"
 SoftwareSerial wifi(3, 2);//RX, TX
 
 
 //define pins for moisture sensor
+#define DHTTYPE DHT11
+#define DHTPIN 4 
+DHT dht(DHTPIN, DHTTYPE);
 int moistOnePin = A0;
 int moistOneValue = 0;
 int wifiReset = 8;
@@ -83,22 +88,55 @@ void loop() {
   checkConnection();
   //establish link to server
   connectServer();
+  
   //read and send value
-  String Id = "111";
-  String data = String(analogRead(moistOnePin));
-  data = Id + data;
-  String command = "AT+CIPSEND=" + String(data.length());
-  command += "\r\n";
+  String Id_m = "111";
+  String data_m = String(analogRead(moistOnePin));
+  data_m = Id_m + data_m;
+  String command_m = "AT+CIPSEND=" + String(data_m.length());
+  command_m += "\r\n";
+  
+  //humidity
+  String Id_h = "112";
+  String data_h = String(dht.readHumidity());
+  data_h = Id_h + data_h;
+  String command_h = "AT+CIPSEND=" + String(data_h.length());
+  command_h += "\r\n";
+  //temp
+  String Id_t = "113";
+  String data_t = String(dht.readTemperature(true));
+  data_t = Id_t + data_t;
+  String command_t = "AT+CIPSEND=" + String(data_t.length());
+  command_t += "\r\n";
+  
   delay(5000);
-  wifi.print(command);
-  Serial.print(command);
-  delay(5000);
+  wifi.print(command_m);
+  Serial.print(command_m);
+  delay(1000);
+  wifi.print(data_m);
+  Serial.print(data_m);
+  
+  delay(1000);
+  wifi.print(command_h);
+  Serial.print(command_h);
+  delay(1000);
+  wifi.print(data_h);
+  Serial.print(data_h);
+  
+  delay(1000);
+  wifi.print(command_t);
+  Serial.print(command_t);
+  delay(1000);
+  wifi.print(data_t);
+  Serial.print(data_t);
   Serial.println("after CIP send: " + readWifi());
-  wifi.print(data);
+  
+  
+
   delay(5000);
   Serial.println("after data send: " + readWifi());
   
-  Serial.print(data);
+  
   Serial.println(readWifi());
   
   wifi.write("AT+CIPCLOSE\r\n");
