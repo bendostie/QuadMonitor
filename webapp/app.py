@@ -16,6 +16,75 @@ except Exception as ex:
     print("database connection error: ")
     print(ex)
 
+def get_moisture():
+    try:
+        cur.execute('''SELECT DeviceID, reading, DataTime
+                       FROM devices NATURAL JOIN readings
+                       WHERE DataDate >= (CURDATE() - INTERVAL 2 DAY) AND DeviceType = "soil_moisture"''')
+        records = cur.fetchall()
+        
+        now = datetime.now()
+        data = []
+        dates = []
+        for record in records:
+            dates.append(now - record[2])
+            data.append(record[1])
+        print(dates, data)
+        plt.plot_date(dates, data)
+        plt.title('Soil Moisture', fontweight ="bold")
+        plt.savefig("static/images/moist.png")
+        plt.close()
+        
+    except Exception as ex:
+        print("database read error: ")
+        print(ex)
+        
+        
+def get_temp():
+    try:
+        cur.execute('''SELECT DeviceID, reading, DataTime
+                       FROM devices NATURAL JOIN readings
+                       WHERE DataDate >= (CURDATE() - INTERVAL 2 DAY) AND DeviceType = "temperature"''')
+        records = cur.fetchall()
+        
+        now = datetime.now()
+        data = []
+        dates = []
+        for record in records:
+            dates.append(now - record[2])
+            data.append(record[1])
+        print(dates, data)
+        plt.plot_date(dates, data)
+        plt.title('Air Temperature', fontweight ="bold")
+        plt.savefig("static/images/temp.png")
+        plt.close()
+        
+    except Exception as ex:
+        print("database read error: ")
+        print(ex)
+        
+def get_humidity():
+    try:
+        cur.execute('''SELECT DeviceID, reading, DataTime
+                       FROM devices NATURAL JOIN readings
+                       WHERE DataDate >= (CURDATE() - INTERVAL 2 DAY) AND DeviceType = "humidity"''')
+        records = cur.fetchall()
+        
+        now = datetime.now()
+        data = []
+        dates = []
+        for record in records:
+            dates.append(now - record[2])
+            data.append(record[1])
+        print(dates, data)
+        plt.plot_date(dates, data)
+        plt.title('Air Humidity', fontweight ="bold")
+        plt.savefig("static/images/humid.png")
+        plt.close()
+        
+    except Exception as ex:
+        print("database read error: ")
+        print(ex)
 #initialize flask
 IMAGE_FOLDER = os.path.join('static', 'images')
 app = Flask(__name__)
@@ -27,31 +96,12 @@ def index():
 
 @app.route('/quad')
 def quad():
-    try:
-        cur.execute('''SELECT DeviceID, reading, DataTime
-                       FROM devices NATURAL JOIN readings
-                       WHERE DataDate >= (CURDATE() - INTERVAL 2 DAY)''')
-        records = cur.fetchall()
-        
-        now = datetime.now()
-        data = []
-        dates = []
-        for record in records:
-            dates.append(now - record[2])
-            data.append(record[1])
-        print(dates, data)
-        plt.plot_date(dates, data)
-        plt.title('matplotlib.pyplot.plot_date() function Example', fontweight ="bold")
-        plt.savefig("static/images/graph.png")
-        
-    except Exception as ex:
-        print("database read error: ")
-        print(ex)
-    
-    
-    filename = os.path.join(app.config['UPLOAD_FOLDER'], 'graph.png')
-    print(filename)
-    return render_template('quad.html', graph_image = 'static/images/graph.png')
+    get_moisture()
+    get_humidity()
+    get_temp()
+    return render_template\
+           ('quad.html', moist_image = 'static/images/moist.png', \
+            temp_image = 'static/images/temp.png', humid_image = 'static/images/humid.png')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
