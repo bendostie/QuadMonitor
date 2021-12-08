@@ -100,8 +100,7 @@ def quad():
     get_humidity()
     get_temp()
     return render_template\
-           ('quad.html', moist_image = 'static/images/moist.png', \
-            temp_image = 'static/images/temp.png', humid_image = 'static/images/humid.png')
+           ('quad.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
