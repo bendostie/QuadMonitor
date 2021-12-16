@@ -26,7 +26,7 @@ The soil moisture sensor is connected directly to 3.3v, ground, and analog pin 1
 <img src="images/soil-sensor.JPG" alt="drawing" width="400"/>
 <img src="images/overhead-marked.jpg" alt="drawing" width="400"/>
 
-The DHT11 was connected to 3.3v, ground and digital pin 4 with a 1ok pull-up resistor
+The DHT11 was connected to 3.3v, ground, and digital pin 4 with a 10k pull-up resistor
 
 <img src="images/DHT11.JPG" alt="drawing" width="250"/>
 <img src="images/side-marked.JPG" alt="drawing" width="562"/>
@@ -42,6 +42,10 @@ The power is supplied through 18650 batteries, a power supply board, and solar p
 <img src="images/batteries.JPG" alt="drawing" width="400"/>
 <img src="images/charger.JPG" alt="drawing" width="400"/>
 
+The enclosure protects the sensor unit from dust and rain.
+
+<img src="images/enclosure.JPG" alt="drawing" width="800"/>
+
 ## Sensor Unit Code
 
 The sensor unit code consists of the sensor_unit.ino file. This code runs through a loop with the following major steps:
@@ -56,8 +60,37 @@ The sensor unit code consists of the sensor_unit.ino file. This code runs throug
 ## Server Code
 
 The server collects data from the Nano, stores it in a database, and serves it to users over the web.
-The users for the database can be created via setup.sh and the database is created by setup_db.py. The database has the following Schema:
+The users for the database can be created via setup.sh and the database is created by setup_db.py. The database has the following Schema: (forecast table coming soon)
 
-<img src="images/database.JPG" alt="drawing" width="400"/>
+<img src="images/database.png" alt="database" width="800"/>
 
-The server runs two pieces of server code. server.py waits for the Nano to connect and inserts sensor readings and ID into the database
+The server runs two pieces of server code. server.py waits for the Nano to connect and inserts sensor readings and ID into the database. app.py runs a flask server that serves a pyplot graph of recent sensor readings on port 5000.
+
+## Future Development
+
+1. The ESP-01 firmware needs to be updated to support a stable baud rate (currently 115k)
+2. With a stable baud rate, the sensor unit can support reliable data sends
+3. The DHT11 needs to be replaced with a water resistant sensor
+4. A forecast table in the database will record weather forecasts at the time of the reading
+5. After data collection a machine learning algorithim can be used to predict when the Quad will dry
+6. A better UI will allow users to choose what data to view
+
+## References 
+
+ESP-01 documentation: 
+
+https://www.microchip.ua/wireless/esp01.pdf
+
+DHT library documentation and examples:
+
+ https://www.arduino.cc/reference/en/libraries/dht-sensor-library/
+
+Setup MariaDB: 
+
+https://mariadb.com/get-started-with-mariadb/
+
+https://betterprogramming.pub/how-to-install-mysql-on-a-raspberry-pi-ad3f69b4a094
+
+Flask server:
+
+https://projects.raspberrypi.org/en/projects/python-web-server-with-flask
