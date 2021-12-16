@@ -23,28 +23,28 @@ The sensor unit uses the following hardware:
 ### Wiring
 The soil moisture sensor is connected directly to 3.3v, ground, and analog pin 1. 
 
-<img src="images/soil-sensor.JPG" alt="drawing" width="400"/>
-<img src="images/overhead-marked.jpg" alt="drawing" width="400"/>
+<img src="images/soil-sensor.JPG" alt="drawing" width="350"/>
+<img src="images/overhead-marked.jpg" alt="drawing" width="350"/>
 
 The DHT11 was connected to 3.3v, ground, and digital pin 4 with a 10k pull-up resistor
 
-<img src="images/DHT11.JPG" alt="drawing" width="250"/>
-<img src="images/side-marked.JPG" alt="drawing" width="562"/>
+<img src="images/DHT11.JPG" alt="drawing" width="200"/>
+<img src="images/side-marked.JPG" alt="drawing" width="450"/>
 
 The ESP-01 operates at 3.3v and draws too much power for the Nano to supply. It requires voltage dividers on the rx and reset pins. The vcc and chip enable pins go to the output of the 3.3v regulator. The ground pin goes to common ground. The rx pin is connected to digital pin 2 through the voltage divider and the tx pin goes to digital pin 3. The reset pin is connected through a voltage divider to digital pin 8 to reset the ESP-01 from deep sleep. 
 
-<img src="images/ESP-01.JPG" alt="drawing" width="400"/>
-<img src="images/ESP-overhead.JPG" alt="drawing" width="400"/>
+<img src="images/ESP-01.JPG" alt="drawing" width="350"/>
+<img src="images/ESP-overhead.jpg" alt="drawing" width="350"/>
 
 The power is supplied through 18650 batteries, a power supply board, and solar panels.
 
 
-<img src="images/batteries.JPG" alt="drawing" width="400"/>
-<img src="images/charger.JPG" alt="drawing" width="400"/>
+<img src="images/batteries.JPG" alt="drawing" width="350"/>
+<img src="images/charger.JPG" alt="drawing" width="350"/>
 
 The enclosure protects the sensor unit from dust and rain.
 
-<img src="images/enclosure.JPG" alt="drawing" width="800"/>
+<img src="images/enclosure.JPG" alt="drawing" width="700"/>
 
 ## Sensor Unit Code
 
@@ -62,7 +62,7 @@ The sensor unit code consists of the sensor_unit.ino file. This code runs throug
 The server collects data from the Nano, stores it in a database, and serves it to users over the web.
 The users for the database can be created via setup.sh and the database is created by setup_db.py. The database has the following Schema: (forecast table coming soon)
 
-<img src="images/database.png" alt="database" width="800"/>
+<img src="images/database.png" alt="database" width="700"/>
 
 The server runs two pieces of server code. server.py waits for the Nano to connect and inserts sensor readings and ID into the database. app.py runs a flask server that serves a pyplot graph of recent sensor readings on port 5000.
 
