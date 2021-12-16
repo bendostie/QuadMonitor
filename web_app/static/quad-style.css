@@ -1,0 +1,313 @@
+/*---global---*/
+@-ms-viewport{
+  width: device-width;
+}
+body{
+  font: 15px/1.5 Arial, Helvetica,sans-serif;
+  padding:0;
+  margin:0;
+  background-color:#f4f4f4;
+}
+input[type="checkbox"]{
+  position: absolute;
+  visibility: hidden;
+}
+
+
+.container{
+  width:80%;
+  margin:auto;
+  overflow:hidden;
+}
+
+ul{
+  margin:0;
+  padding:0;
+}
+
+
+
+/*--------header----------*/
+
+
+header{
+    margin-top: 7px;
+  width: 100%;
+  background:none;  
+  min-height:30px;
+  border-bottom:#2b312c 3px solid;
+
+    position: top;
+    
+}
+
+
+
+
+
+
+/*-------desktop menu----------*/
+
+header .desktop{
+  float:right;
+  margin-top:15px;
+}
+
+header .desktop a{
+  color:black;
+  text-decoration:none;
+  text-transform: uppercase;
+  font-size:17px;
+  font-weight:bold;
+}
+
+header .desktop a:hover{
+  color:#cccccc;
+  
+}
+
+header .home{
+  display:inline;
+  padding: 0 15px 0 15px;
+}
+header .projects{
+  display:inline;
+  padding: 0 15px 0 15px;
+}
+header .contact{
+  display:inline;
+  padding: 0 15px 0 15px;
+}
+header .about{
+  display:inline;
+  padding: 0 15px 0 15px;
+}
+header .current a{
+ color:#2b312c;
+  font-weight:bold;
+}
+header .current{
+      display:inline;
+  padding: 0 15px 0 15px;
+}
+
+
+
+
+
+
+/*-------------logo--------------*/
+
+header #logo{
+  float:left;
+    z-index: 2;
+    max-width: 100px;
+    max-width: 150px
+}
+
+header #logo h1{
+    font-size: 14px;
+  
+  margin:0;
+}
+header #logo img{
+    max-height: 54px;
+    
+}
+header
+
+
+header .highlight, header #current a{
+  color:#2b312c;
+  font-weight:bold;
+}
+
+
+/*-----------mobile menu------------*/
+
+
+
+
+}
+header .mobile a{
+    display: block;
+    text-decoration:none;
+}
+header .mobile a:hover{
+    color: grey;
+}
+header .mobile ul{
+    
+    text-decoration:none;
+    
+}
+.mobile-nav {
+    
+  width: 255px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: -255px;
+  z-index: 9998;
+  list-style: none;
+  background: #027c96;
+    
+}
+
+.nav-option {
+  width: 200px;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #000;
+}
+.nav-option a{
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    display: block;
+}
+.nav-option a:hover{
+    color: #027c96;
+    
+}
+.nav-button + label {
+    margin-right: 1px;
+  z-index: 9999;  
+  height: 30px;
+  width: 30px;
+  position: fixed;
+  left: 15px; top: 13px;
+  display: none;
+  text-align: center;
+  cursor: pointer;
+     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+  background-size: contain;
+}
+.nav-button:checked + label{
+    transition: all 0.3s;
+    left: 210px;
+}
+.nav-button:checked ~ .mobile-nav{
+    transition: all 0.3s;
+    top: 0;
+    left: 0;
+}
+
+
+
+
+
+
+
+
+/*-----------------Boxes-----------------*/
+
+#boxes{
+  margin-top:20px;
+}
+
+#boxes .box{
+
+  float:none;
+  text-align: center;
+  width:500px;
+  padding:20px;
+}
+
+#boxes .box img{
+  width:500px;
+  height: 400px;
+}
+
+
+
+
+
+footer{
+  padding:20px;
+  margin-top:20px;
+  color:#ffffff;
+  background-color:#2b312c;
+  text-align: center;
+}
+
+/*------------Media Queries------------*/
+@media(max-width: 768px){
+    
+   
+    
+    
+  header #logo,
+  header nav,
+  header nav li,
+  #boxes .box,
+  article#main-col,
+  aside#sidebar{
+    float:none;
+    text-align:center;
+    width:100%;
+  }
+
+  header{
+      margin-top: none;
+    padding-bottom:20px;
+  }
+
+  #showcase h1{
+    margin-top:40px;
+  }
+     header #logo img{
+        display: none;
+         max-width: 5px;
+         
+        
+    }
+    
+
+ }
+@media(max-width: 525px){
+    
+    .nav-button + label{
+        display: block;
+    }
+    .desktop{
+        display: none;        
+    }    
+
+    
+    header { 
+        margin-top: none;
+    min-height: 45px;
+        padding-top: none;
+    padding-bottom:5px;
+        position: fixed;
+        background-color: rgba(255,255,255,0);
+        
+    }
+    header #logo h1{
+    
+        padding-top: 0px;  
+}
+    header #logo img{
+        max-width: 20px;
+        
+    }
+}
+@media(max-width: 300px){
+     header #logo h1{
+    
+        padding-top: 0px;
+        text-align: right;
+        
+}  
+    header #logo img{
+        display: none;
+    }
+    header {
+        padding-top: none;
+        background-color: rgba(255,255,255,.4);
+    }
+}
+
+
+
+
