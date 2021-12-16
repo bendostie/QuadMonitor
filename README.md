@@ -34,7 +34,7 @@ The DHT11 was connected to 3.3v, ground, and digital pin 4 with a 10k pull-up re
 The ESP-01 operates at 3.3v and draws too much power for the Nano to supply. It requires voltage dividers on the rx and reset pins. The vcc and chip enable pins go to the output of the 3.3v regulator. The ground pin goes to common ground. The rx pin is connected to digital pin 2 through the voltage divider and the tx pin goes to digital pin 3. The reset pin is connected through a voltage divider to digital pin 8 to reset the ESP-01 from deep sleep. 
 
 <img src="images/ESP-01.JPG" alt="drawing" width="400"/>
-<img src="images/ESP-overhead.JPG" alt="drawing" width="400"/>
+<img src="images/ESP-overhead.jpg" alt="drawing" width="400"/>
 
 The power is supplied through 18650 batteries, a power supply board, and solar panels.
 
