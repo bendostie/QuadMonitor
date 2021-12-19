@@ -67,7 +67,8 @@ The users for the database can be created via setup.sh and the database is creat
 
 The server runs two pieces of server code. server.py waits for the Nano to connect and inserts sensor readings and ID into the database. app.py runs a flask server that serves a pyplot graph of recent sensor readings on port 5000.
 
-## Future Development
+## Status and Future Development
+Overall, the project was successful. The proof of concept is currently working with around 50% transmission success rate. This is sufficient for testing but great improvements are needed before the unit can be deployed. The first three items on the list are needed before deployment. 
 
 1. The ESP-01 firmware needs to be updated to support a stable baud rate (currently 115k)
 2. With a stable baud rate, the sensor unit can support reliable data sends
