@@ -56,7 +56,7 @@ The sensor unit code consists of the sensor_unit.ino file. This code runs throug
 4. Send readings with sensor ID
 6. Put ESP-01 and Arduino Nano to sleep (currently not working for Arduino)
 
-
+<img src="images/sensor_code.png" alt="drawing" width="400"/>
 
 ## Server Code
 
@@ -66,6 +66,13 @@ The users for the database can be created via setup.sh and the database is creat
 <img src="images/database.png" alt="database" width="700"/>
 
 The server runs two pieces of server code. server.py waits for the Nano to connect and inserts sensor readings and ID into the database. app.py runs a flask server that serves a pyplot graph of recent sensor readings on port 5000.
+### Database:
+
+<img src="images/database_code.png" alt="drawing" width="700"/>
+
+### Web Server: 
+
+<img src="images/web_code.png" alt="drawing" width="700"/>
 
 ## Status and Future Development
 Overall, the project was successful. The proof of concept is currently working with around 50% transmission success rate. This is sufficient for testing but great improvements are needed before the unit can be deployed. The first three items on the list are needed before deployment. 
