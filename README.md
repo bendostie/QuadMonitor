@@ -74,6 +74,13 @@ The server runs two pieces of server code. server.py waits for the Nano to conne
 
 <img src="images/web_code.png" alt="drawing" width="700"/>
 
+## UI
+
+The above web code runs a simple site to display a graph of data readings in the past 3 days. This is an arbitrary length and needs to be updated to include more options. 
+### Sample graph for soil moisture readings:
+
+<img src="images/moist.png" alt="drawing" width="700"/>
+
 ## Status and Future Development
 Overall, the project was successful. The proof of concept is currently working with around 50% transmission success rate. This is sufficient for testing but great improvements are needed before the unit can be deployed. The first three items on the list are needed before deployment. 
 
