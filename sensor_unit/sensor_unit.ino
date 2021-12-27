@@ -1,3 +1,7 @@
+// code for arduino sensor unit
+// see ReadMe for wiring to ESP-01
+// error handling not working due to unstable baud rate with ESP-01
+
 //software serial for ESP-01
 #include <SoftwareSerial.h>
 #include "DHT.h"

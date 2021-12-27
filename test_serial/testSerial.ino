@@ -1,3 +1,8 @@
+// code for testing ESP-01
+// forwards serial through arduino
+// see ReadMe for wiring diagram
+// baud rate with ESP-01 and software serial unstable
+
 #include <SoftwareSerial.h>
 SoftwareSerial myESP(3, 2);//RX, TX
 

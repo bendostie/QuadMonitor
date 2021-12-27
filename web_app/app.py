@@ -1,5 +1,10 @@
+# flask web server to serve data from database
+# data is graphed with pyplot and served as an image
+# Benjamin Dostie 2021
+
 import matplotlib.pyplot as plt
 import os
+import sys
 from datetime import datetime
 from flask import Flask, render_template
 
@@ -15,8 +20,14 @@ try:
 except Exception as ex:
     print("database connection error: ")
     print(ex)
+    sys.exit("Unrecoverable error")
 
 def get_moisture():
+    '''
+    get data from moisture sensors in the database,
+    graph, and save to image
+    '''
+    
     try:
         cur.execute('''SELECT DeviceID, reading, DataTime
                        FROM devices NATURAL JOIN readings
@@ -41,6 +52,11 @@ def get_moisture():
         
         
 def get_temp():
+    '''
+    get data from temperature sensors in the database,
+    graph, and save to image
+    '''
+    
     try:
         cur.execute('''SELECT DeviceID, reading, DataTime
                        FROM devices NATURAL JOIN readings
@@ -64,6 +80,10 @@ def get_temp():
         print(ex)
         
 def get_humidity():
+    '''
+    get data from humidity sensors in the database,
+    graph, and save to image
+    '''
     try:
         cur.execute('''SELECT DeviceID, reading, DataTime
                        FROM devices NATURAL JOIN readings
@@ -85,22 +105,23 @@ def get_humidity():
     except Exception as ex:
         print("database read error: ")
         print(ex)
+        
+        
+        
 #initialize flask
-IMAGE_FOLDER = os.path.join('static', 'images')
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = IMAGE_FOLDER
+
 
 @app.route('/')
 def index():
-    return 'Hello world'
+    return render_template('index.html')
 
 @app.route('/quad')
 def quad():
     get_moisture()
     get_humidity()
     get_temp()
-    return render_template\
-           ('quad.html')
+    return render_template('quad.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
